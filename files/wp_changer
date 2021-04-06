@@ -1,4 +1,0 @@
-#/bin/bash
-#
-image="$(ls $HOME/Imagens | rofi -dmenu -p "selecione a imagem para o papel de parede")" 
-feh --bg-scale $HOME/Imagens/$image

@@ -1,51 +1,82 @@
 #/bin/bash
-
 sudo pacman -Syu
 
-#base installation
-sudo pacman -S git xclip xorg xorg-xinit xorg-xsetroot xdg-user-dirs feh alacritty bspwm unzip
+#create user
+useradd -m antonio
+passwd antonio
+sudo echo "antonio ALL=(ALL) ALL >> /etc/sudoers
 
-#create user directories
-xdg-user-dirs-update
+#base installation
+sudo pacman -S xclip xorg xorg-xinit xorg-xsetroot xdg-user-dirs alsa-utils feh alacritty bspwm sxhkd unzip openssh nodejs npm code mpv rofi ttf-font-awesome thunar thunar-archive-plugin thunar-media-tags-plugin gvfs thunar-volman raw-thumbnailer zsh qbittorrent
 
 #clone dotfiles repo
-cd $HOME
-git clone https://github.com/antonioeduardofernandes/postinstall.git
+# cd $HOME
+# git clone https://github.com/antonioeduardofernandes/postinstall.git
+cd postinstall/
 
 #copy base files
-cd $HOME/postinstall
-cp .xinitrc .zshrc .vimrc $HOME/  
-
-#bspwm & sxhkd
-cd
-mkdir $HOME/.config/{bspwm,sxhkd}
-cp sxhkdrc $HOME/.config/sxhkd
-cp bspwmrc $HOME/.config/bspwm
-
-#thunar
-sudo pacman -S thunar thunar-archive-plugin thunar-media-tags-plugin gvfs thunar-volman raw-thumbnailer
-
-#rofi
-sudo pacman -S rofi
-mkdir $HOME/.config/rofi
-mv $HOME/postinstall/files/config.rasi $HOME/.config/rofi
+cd files/
+cp -r .xinitrc .zshrc .vimrc .gitconfig .bashrc .config $HOME/  
 
 #google-chrome
-cd
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome/
-makepkg -sri PKGBUILD
-cd
+makepkg -sri && cd ..
 
 #mv bin scripts
-cd
-sudo cp kbd wp_changer /usr/bin/
-sudo chmod +x /usr/bin/kbd
-sudo chmod +x /usr/bin/wp_changer
+sudo cp -r $HOME/postinstall/scripts/* /usr/bin
 
 #change bg
 mv $HOME/postinstall/wp $HOME/
 feh --bg-scale $HOME/wp/wp.jpg
 
 #fonts
-source ./fonts.sh
+cd
+git clone https://github.com/powerline/fonts.git
+cd fonts/ && ./install.sh
+
+git clone https://aur.archlinux.org/ttf-material-icons-git.git
+cd ttf-material-icons-git/
+makepkg -sri && cd ..
+
+git clone https://aur.archlinux.org/nerd-fonts-ubuntu-mono.git
+cd nerd-fonts-ubuntu-mono/
+makepkg -sri && cd ..
+
+#spotify
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+git clone https://aur.archlinux.org/spotify.git
+cd spotify/
+makepkg -sri && cd ..
+
+#polybar
+git clone https://aur.archlinux.org/polybar.git
+cd polybar/ 
+makepkg -sri && cd ..
+chmod +x $HOME/.config/polybar/launch.sh
+
+
+#ohmyzsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+#picom with animations
+git clone https://aur.archlinux.org/picom-jonaburg-git.git
+cd picom-jonaburg-git/ 
+makepkg -sri && cd ..
+
+#vscode
+source $HOME/vscode/vscode.sh
+
+#chmod files
+chmod +x $HOME/.config/bspwm/bspwmrc
+chmod +x $HOME/.config/sxhkd/sxhkdrc
+
+#wallpaper
+cp -r $HOME/postinstall/files/wp $HOME
+feh --bg-scale $HOME/wp/wp.jpg
+
+#startx
+startx

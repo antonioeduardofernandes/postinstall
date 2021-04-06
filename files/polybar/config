@@ -1,0 +1,39 @@
+[section/base]
+include-file = $HOME/.config/polybar/colors
+include-file = $HOME/.config/polybar/modules
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[bar/main]
+monitor = HDMI-1
+wm-restack = bspwm
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+padding = 2
+padding-right = 6
+module-margin-left = 1
+module-margin-right = 6
+
+width = 98%
+offset-x = 1%
+offset-y = 1%
+radius = 4
+fixed-center = true
+bottom = false
+height = 34
+enable-ipc = true
+
+font-0 = "Fira Code:Style=normal:size=9;1"
+font-1 = "MaterialIcons-Regular:style=Regular:size=12;2" 
+
+modules-left = 
+modules-center = 
+modules-right = xkeyboard alsa date network
+
+[bar/secondary]
+monitor = DVI-I-1
+inherit = bar/main
+

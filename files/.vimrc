@@ -13,12 +13,8 @@ let mapleader = " "
 
 autocmd TextChanged,TextChangedI *.vue silent write
 
-"MAPPINGS
-"nnoremap <leader>ev :tabedit $HOME/.vimrc<CR>
-"nnoremap <leader>rv :source %<CR>
 nnoremap <Tab> gt
 nnoremap <S-Tab> gt
 
 inoremap kj <Esc><Esc>
 vnoremap kj <Esc><Esc>
-

@@ -1,0 +1,36 @@
+[module/xkeyboard]
+type = internal/xkeyboard
+format =  <label-layout>
+blacklist-0 = scroll lock
+blacklist-1 = num lock
+format-foreground = ${material.orange}
+
+[module/alsa]
+type = internal/alsa
+master-mixer = Master
+interval = 1
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${material.blue}
+ramp-volume-foreground = ${material.blue}
+label-muted = 
+label-muted-foreground = ${material.red}
+ramp-volume-0 =  
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/network]
+type = custom/script
+exec = ~/.config/polybar/scripts/checkNetwork.sh
+tail = true
+label-foreground = ${material.green}
+
+[module/date]
+type = internal/date
+label = %time%
+format-padding = 1
+format-spacing = 1
+label-spacing = 2
+format =  <label>
+interval = 60
+time = %H:%M

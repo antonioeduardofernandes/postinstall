@@ -1,0 +1,20 @@
+[colors]
+bg = ${material.dark}
+fg = ${material.gray-text}
+accent = ${material.teal}
+warning = ${material.yellow}
+danger = ${material.red}
+
+[material]
+cyan = #0097A7
+blue = #00BCD4
+teal = #009688
+gray = #455A64
+gray-secondary = #607D8B
+gray-divider = #BDBDBD
+dark = #212121
+gray-text = #CFD8DC
+yellow = #FFECB3
+orange = #FFC107
+red = #FF9800
+green = #4CAF50 

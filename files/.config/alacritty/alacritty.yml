@@ -1,0 +1,39 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+window:
+  padding:
+    x: 20
+    y: 20
+
+font:
+  normal:
+    family: UbuntuMono Nerd Font
+
+  offset:
+    x: 0 
+    y: 10 
+
+colors:
+  primary:
+    background: '0x282828'
+    foreground: '0xd8dee8'
+
+  normal:
+    black:   '0x665c54'
+    red:     '0xb2535b'
+    green:   '0xa5bd8d'
+    yellow:  '0xe78a4e'
+    blue:    '0x4ec2e9'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'
+
+  bright:
+    black:   '0x928374'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xe3a84e'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'

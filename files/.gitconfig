@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	email = antonioeduardofernandes@gmail.com
+	name = antonio
+
+[alias]
+	aa = add -A
+	c = commit -m
+	amend = commit --amend --no-edit
+	pf = push -f
+	p = push
+	co = checkout
+	cob = checkout -b
+	s = status
+	l = log --oneline
