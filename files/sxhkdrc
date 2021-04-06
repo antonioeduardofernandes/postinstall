@@ -1,0 +1,70 @@
+# APPS
+super + {Return, w, s, e, d, i, @space, Tab}
+	{$TERM, $BROWSER, spotify, thunar, code, inkscape, rofi -show run, rofi -show window}
+
+# reload sxhkd 
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# quit/restart bspwm
+ctrl + alt + e
+	bspc quit
+
+super + shift + r
+	bspc wm -r
+
+#hide/unhide node
+super + h
+	bspc node focused -g hidden=on
+super + shift + h
+	bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off
+
+# close and kill
+super +  q
+    bspc node -c
+
+# toggle fullscreen
+super + m
+	bspc node -t {fullscreen, tiled}
+
+super + g
+	bspc node -s biggest.window
+
+# toggle window tiled
+super + shift + @space
+	bspc node -t {tiled,floating}
+
+# focus the node in the given direction
+super + {j,k,l,semicolon}
+ bspc node -f {west,south,north,east} --follow
+
+# swap the node in the given direction
+super + shift + {j,semicolon}
+ bspc node -s {west,east} --follow
+
+# focus or send to the given desktop
+super + {_, shift} + {1-9,0}
+ bspc {desktop -f,node -d} '^{1-9,10}'
+
+# contract a window by moving one of its side inward
+super + alt + {j,k,l,semicolon}
+	bspc node -z {left -20 0, bottom 0 20, top 0 -20, right 20 0}
+
+# expand a window by moving one of its side outward
+super + alt + shift + {j,k,l,semicolon}
+	bspc node -z {right -20 0, bottom 0 20, top 0 -20, left 20 0}
+
+#audio control
+ctrl + alt + {semicolon,j}
+	amixer sset Master unmute && amixer sset Master {playback 1dB+,playback 1dB-} 
+
+ctrl + alt + {k,l}
+	amixer sset Master {mute, mute}
+
+#change kbd language
+super + shift + k
+	kbd
+
+#change wallpaper
+super + p
+	wp_changer

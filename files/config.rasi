@@ -1,0 +1,4 @@
+configuration {
+	modi: "window,run,ssh";
+}
+@import "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"

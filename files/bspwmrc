@@ -1,0 +1,25 @@
+#! /bin/sh
+
+$HOME/.config/polybar/launch.sh &
+xsetroot -Bibata-Original-Classic left_ptr &
+
+export TERM="alacritty"
+export BROWSER="google-chrome-stable"
+export MUSIC="spotify"
+export CODE="code"
+
+sxhkd &
+$HOME/.config/polybar/launch.sh
+
+
+#bspc config pointer_follows_focus true
+
+bspc monitor DVI-I-1 -d 
+bspc monitor HDMI-1 -d 
+
+bspc config border_width         0
+#bspc config focused_border_color		\#FF9800
+bspc config window_gap						6
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config directional_focus_tightness low
